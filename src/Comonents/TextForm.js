@@ -42,6 +42,7 @@ export default function TextForm(props) {
 
     }
 
+    // this is for to clear all text what you written in paragraph
     const clearText = () => {
         console.log("Lowercase was clicked" + text)
         let newText = ""
@@ -65,6 +66,40 @@ export default function TextForm(props) {
 
     }
 
+    // this function is for to Capitalize the text 
+    const handleSentenceCase = () => {
+        let arrWords = text.split(". ");
+        console.log(arrWords)
+        let newText = ""
+        for (let i = 0; i < arrWords.length; i++) {
+            console.log(i)
+            if (i === arrWords.length - 1) {
+                newText += arrWords[i].charAt(0).toUpperCase() + arrWords[i].slice(1)
+            }
+            else {
+                newText += arrWords[i].charAt(0).toUpperCase() + arrWords[i].slice(1) + ". "
+            }
+        }
+        // console.log(newText);    
+        setText(newText)
+    }
+
+
+
+
+    // this Function will listen Capitalized Case button
+    const handleCapitalizeCase = () => {
+        let arrWords = text.split(" ");
+        let newText = ""
+        for (let i of arrWords) {
+            newText += i.charAt(0).toUpperCase() + i.slice(1) + " "
+        }
+        // console.log(newText);    
+        setText(newText)
+    }
+
+
+
     // This is for to listen the changes in the input section
     const handleOnChange = (event) => {
         console.log("Onchange")
@@ -72,12 +107,16 @@ export default function TextForm(props) {
 
 
 
-        let arrWords = text.split(" ");
-        let con = arrWords.length
-        if (arrWords[arrWords.length - 1] === "") {
-            setVal(con - 1)
-        }
-        setVal(con)
+        // let arrWords = text.split(" ");
+        // if (arrWords[] === "") {
+        //     arrWords.splice(arrWords.length - 1, 1)
+        // }
+        // console.log(arrWords)
+        // let con = arrWords.length
+        // if (arrWords[arrWords.length - 1] === " ") {
+        //     setVal(con - 1)
+        // }
+        // setVal(con)
 
 
 
@@ -110,15 +149,19 @@ export default function TextForm(props) {
                     <textarea className="form-control" value={text} onChange={handleOnChange} id="myBox" rows="6"></textarea>
                     {/* value={text} will update because of setText and onChange will give us ability to write in Input  */}
                 </div>
-                <button className="btn btn-primary mx-2" onClick={clearText} >ClearText</button>
-                <button className="btn btn-primary mx-2" onClick={handleUpClick} >UpperCase</button>
-                <button className="btn btn-primary mx-2" onClick={handleLoClick} >LowerCase</button>
+                <button className="btn btn-success mx-4" onClick={handleSentenceCase} >Sentence case</button>
+                <button className="btn btn-success mx-4" onClick={handleUpClick} >UPPER CASE</button>
+                <button className="btn btn-success mx-4" onClick={handleLoClick} >lower case</button>
+                <button className="btn btn-success mx-4" onClick={handleCapitalizeCase} >Capitalize     Case</button>
+                <button className="btn btn-success mx-4" onClick={clearText} >ClearText</button>
+
+
 
             </div>
             <div className="Container my-5">
                 <h2>your Text summary</h2>
-                <p>words :- {val}   and    characters :- {text.length}</p>
-                <p>{0.008 * val} <b>Menutes read </b></p>
+                {/* <p>words :- {text.split(" ").length - 1}   and    characters :- {text.length}</p>
+                <p>{0.008 * text.split(" ").length - 1} <b>Menutes read </b></p> */}
                 <h3>Preview</h3>
                 <p>{text}</p>
             </div>
