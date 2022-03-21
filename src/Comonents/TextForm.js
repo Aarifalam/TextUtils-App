@@ -152,7 +152,7 @@ export default function TextForm(props) {
                 <button className="btn btn-success mx-4" onClick={handleSentenceCase} >Sentence case</button>
                 <button className="btn btn-success mx-4" onClick={handleUpClick} >UPPER CASE</button>
                 <button className="btn btn-success mx-4" onClick={handleLoClick} >lower case</button>
-                <button className="btn btn-success mx-4" onClick={handleCapitalizeCase} >Capitalize     Case</button>
+                <button className="btn btn-success mx-4" onClick={handleCapitalizeCase} >Capitalize Case</button>
                 <button className="btn btn-success mx-4" onClick={clearText} >ClearText</button>
 
 
