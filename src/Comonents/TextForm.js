@@ -142,11 +142,11 @@ export default function TextForm(props) {
     const [val, setVal] = useState(0)
 
     return (
-        <>
-            <div className="Container">
-                <h1>{props.heading}</h1>
+        <div>
+            <div className="Container" >
+                <h1 style={{ color: props.mode === "dark" ? "white" : "black" }}>{props.heading}</h1>
                 <div className="mb-3">
-                    <textarea className="form-control" value={text} onChange={handleOnChange} id="myBox" rows="6"></textarea>
+                    <textarea className="form-control" value={text} onChange={handleOnChange} style={{ background: props.mode === "dark" ? "#01101f" : "white", color: props.mode === "dark" ? "white" : "black", border: props.mode === "dark" ? "2px solid #dee2e6" : "2px solid black" }} id="myBox" rows="6"></textarea>
                     {/* value={text} will update because of setText and onChange will give us ability to write in Input  */}
                 </div>
                 <button className="btn btn-success mx-4" onClick={handleSentenceCase} >Sentence case</button>
@@ -158,15 +158,15 @@ export default function TextForm(props) {
 
 
             </div>
-            <div className="Container my-5">
+            <div className="Container my-5" style={{ color: props.mode === "dark" ? "white" : "black" }} >
                 <h2>your Text summary</h2>
-                {/* <p>words :- {text.split(" ").length - 1}   and    characters :- {text.length}</p>
-                <p>{0.008 * text.split(" ").length - 1} <b>Menutes read </b></p> */}
+                <p>words :- {text.split(" ").length - 1}   and    characters :- {text.length}</p>
+                <p>{0.008 * text.split(" ").length - 1} <b>Menutes read </b></p>
                 <h3>Preview</h3>
-                <p>{text}</p>
+                <p>{text.length > 0 ? text : "Enter something in the text box above to Preview it here."}</p>
             </div>
 
 
-        </>
+        </div>
     )
 }
