@@ -13,6 +13,9 @@ export default function TextForm(props) {
         let newText = text.toUpperCase()
         setText(newText)
 
+        // alert
+        props.showAlert("converted to UpperCase!", "success")
+
 
         // let arrWords = text.split(" ");
         // let con = arrWords.length
@@ -40,6 +43,10 @@ export default function TextForm(props) {
         // setVal(con)
 
 
+        // alert
+        props.showAlert("converted to LowerCase!", "success")
+
+
     }
 
     // this is for to clear all text what you written in paragraph
@@ -62,8 +69,6 @@ export default function TextForm(props) {
         // solution
         setVal(0)
 
-
-
     }
 
     // this function is for to Capitalize the text 
@@ -82,6 +87,9 @@ export default function TextForm(props) {
         }
         // console.log(newText);    
         setText(newText)
+
+        // alert
+        props.showAlert("converted to SentenceCase!", "success")
     }
 
 
@@ -96,6 +104,10 @@ export default function TextForm(props) {
         }
         // console.log(newText);    
         setText(newText)
+
+
+        // alert
+        props.showAlert("converted to CapitalizeCase!", "success")
     }
 
 
