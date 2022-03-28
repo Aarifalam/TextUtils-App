@@ -4,7 +4,14 @@ import Navbar from './Comonents/Navbar';
 import TextForm from './Comonents/TextForm';
 import React, { useState } from 'react';
 import Alert from './Comonents/Alert';
-// import About from './Comonents/About';
+import About from './Comonents/About';
+
+// Routs
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from "react-router-dom";
 
 
 function App() {
@@ -58,15 +65,26 @@ function App() {
 
   return (
     <>
-      <Navbar title="TextUtils" aboutText="About TextUtils" mode={mode} toogleMode={toogleMode} />
-      {/* <Navbar />   // if i will commnet upper one and use this without passing any props then it will use default props which we passed in defferent fils of components of file. */}
+      <BrowserRouter>
+        <Navbar title="TextUtils" aboutText="About TextUtils" mode={mode} toogleMode={toogleMode} />
+        {/* <Navbar />   // if i will commnet upper one and use this without passing any props then it will use default props which we passed in defferent fils of components of file. */}
 
-      <Alert alert={alert} />
+        <Alert alert={alert} />
 
-      <div className="container my-3">
-        <TextForm heading="Enter your text below" mode={mode} showAlert={showAlert} />
-        {/* <About /> */}
-      </div>
+        <div className="container my-3">
+          {/* <TextForm heading="Enter your text below" mode={mode} showAlert={showAlert} />
+          <About /> */}
+
+          <Routes>
+
+            <Route path="/" element={<TextForm />} />
+
+            <Route path="/about" element={<About />} />
+
+          </Routes>
+
+        </div>
+      </BrowserRouter>
     </>
   );
 }

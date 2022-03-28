@@ -154,7 +154,7 @@ export default function TextForm(props) {
     const [val, setVal] = useState(0)
 
     return (
-        <div>
+        <div className="container my-3">
             <div className="Container" >
                 <h1 style={{ color: props.mode === "dark" ? "white" : "black" }}>{props.heading}</h1>
                 <div className="mb-3">
