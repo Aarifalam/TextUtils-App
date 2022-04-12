@@ -114,10 +114,13 @@ export default function TextForm(props) {
 
     // this function is for to copy the text
     const handleCopyText = () => {
-        let text = document.getElementById("myBox");
-        text.select();
-        navigator.clipboard.writeText(text.value);
-        document.getSelection().removeAllRanges();
+        // let text = document.getElementById("myBox");
+        // text.select();
+        // if we are using navigator api then these upper two lines we don't need and also not need to do below one line of navigator
+        // navigator.clipboard.writeText(text.value);
+        navigator.clipboard.writeText(text);
+        // if we are using navigator then we will give directly value it will coped into clipboard  
+        // document.getSelection().removeAllRanges();
         props.showAlert("copied to clipboard!", "success")
     }
     // this i don't get properly that how to copy and also when we do copy it will select the text but because of .removeAllRange it is not selecting that what i have to look for.
@@ -170,7 +173,7 @@ export default function TextForm(props) {
             <div className="Container" >
                 <h4 style={{ color: props.mode === "dark" ? "white" : "black" }}>{props.heading}</h4>
                 <div className="mb-3">
-                    <textarea className="form-control" value={text} onChange={handleOnChange} style={{ background: props.mode === "dark" ? "#01101f" : "white", color: props.mode === "dark" ? "white" : "black", border: props.mode === "dark" ? "0.5px solid #dee2e6" : "0.5px solid black" }} id="myBox" rows="6"></textarea>
+                    <textarea className="form-control" value={text} onChange={handleOnChange} style={{ background: props.mode === "dark" ? "#01101f" : "white", color: props.mode === "dark" ? "white" : "black", border: props.mode === "dark" ? "1px solid #dee2e6" : "1px solid black" }} id="myBox" rows="6"></textarea>
                     {/* value={text} will update because of setText and onChange will give us ability to write in Input  */}
                 </div>
                 <button disabled={text.length === 0} className="btn btn-success mx-1 my-1" onClick={handleSentenceCase} >Sentence case</button>
@@ -188,7 +191,8 @@ export default function TextForm(props) {
             </div>
             <div className="Container my-5" style={{ color: props.mode === "dark" ? "white" : "black" }} >
                 <h2>your Text summary</h2>
-                <p>words :- {text.split(" ").filter((element) => { return element.length !== 0 }).length}   and    characters :- {text.length}</p>
+                <p>words :- {text.split(/\s+/).filter((element) => { return element.length !== 0 }).length}   and    characters :- {text.length}</p >
+                {/* for new line (enter button it was increasing the word count. i fixed it using of "regular expretions"). this regular expretion will split by white spaces and also included new lines */}
                 <p>{0.008 * (text.split(" ").filter((element) => { return element.length !== 0 }).length)} <b>Menutes read </b></p>
                 <h3>Preview</h3>
                 <p>{text.length > 0 ? text : "Enter something in the text box above to Preview it here."}</p>
