@@ -62,7 +62,6 @@ function App() {
 
 
 
-
   return (
     <>
       <BrowserRouter>
@@ -77,9 +76,10 @@ function App() {
 
           <Routes>
 
-            <Route path="/" element={<TextForm />} />
+            <Route path="/" element={<TextForm showAlert={showAlert} mode={mode} heading="Try TextUtils 	&#128126; - And Play With Your Words" />} />
 
-            <Route path="/about" element={<About />} />
+            <Route path="/about" element={<About mode={mode} />} />
+
 
           </Routes>
 

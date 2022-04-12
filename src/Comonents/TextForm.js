@@ -67,7 +67,7 @@ export default function TextForm(props) {
         // }
         // setVal(con)
         // solution
-        setVal(0)
+        // setVal(0)
 
     }
 
@@ -112,6 +112,18 @@ export default function TextForm(props) {
 
 
 
+    // this function is for to copy the text
+    const handleCopyText = () => {
+        let text = document.getElementById("myBox");
+        text.select();
+        navigator.clipboard.writeText(text.value);
+        document.getSelection().removeAllRanges();
+        props.showAlert("copied to clipboard!", "success")
+    }
+    // this i don't get properly that how to copy and also when we do copy it will select the text but because of .removeAllRange it is not selecting that what i have to look for.
+
+
+
     // This is for to listen the changes in the input section
     const handleOnChange = (event) => {
         console.log("Onchange")
@@ -150,34 +162,37 @@ export default function TextForm(props) {
     // setText("new text")   // right way to update text using setText function
 
 
-    // this is for words count 
-    const [val, setVal] = useState(0)
+    // // this is for words count 
+    // const [val, setVal] = useState(0)
 
     return (
         <div className="container my-3">
             <div className="Container" >
-                <h1 style={{ color: props.mode === "dark" ? "white" : "black" }}>{props.heading}</h1>
+                <h4 style={{ color: props.mode === "dark" ? "white" : "black" }}>{props.heading}</h4>
                 <div className="mb-3">
-                    <textarea className="form-control" value={text} onChange={handleOnChange} style={{ background: props.mode === "dark" ? "#01101f" : "white", color: props.mode === "dark" ? "white" : "black", border: props.mode === "dark" ? "2px solid #dee2e6" : "2px solid black" }} id="myBox" rows="6"></textarea>
+                    <textarea className="form-control" value={text} onChange={handleOnChange} style={{ background: props.mode === "dark" ? "#01101f" : "white", color: props.mode === "dark" ? "white" : "black", border: props.mode === "dark" ? "0.5px solid #dee2e6" : "0.5px solid black" }} id="myBox" rows="6"></textarea>
                     {/* value={text} will update because of setText and onChange will give us ability to write in Input  */}
                 </div>
-                <button className="btn btn-success mx-4" onClick={handleSentenceCase} >Sentence case</button>
-                <button className="btn btn-success mx-4" onClick={handleUpClick} >UPPER CASE</button>
-                <button className="btn btn-success mx-4" onClick={handleLoClick} >lower case</button>
-                <button className="btn btn-success mx-4" onClick={handleCapitalizeCase} >Capitalize Case</button>
-                <button className="btn btn-success mx-4" onClick={clearText} >ClearText</button>
+                <button disabled={text.length === 0} className="btn btn-success mx-1 my-1" onClick={handleSentenceCase} >Sentence case</button>
+                <button disabled={text.length === 0} className="btn btn-success mx-1 my-1" onClick={handleUpClick} >UPPER CASE</button>
+                <button disabled={text.length === 0} className="btn btn-success mx-1 my-1" onClick={handleLoClick} >lower case</button>
+                <button disabled={text.length === 0} className="btn btn-success mx-1 my-1" onClick={handleCapitalizeCase} >Capitalize Case</button>
+
+                <button disabled={text.length === 0} className="btn btn-success mx-1 my-1" onClick={handleCopyText} >Copy clipboard</button>
+
+
+                <button disabled={text.length === 0} className="btn btn-success mx-1 my-1" onClick={clearText} >ClearText</button>
 
 
 
             </div>
             <div className="Container my-5" style={{ color: props.mode === "dark" ? "white" : "black" }} >
                 <h2>your Text summary</h2>
-                <p>words :- {text.split(" ").length - 1}   and    characters :- {text.length}</p>
-                <p>{0.008 * text.split(" ").length - 1} <b>Menutes read </b></p>
+                <p>words :- {text.split(" ").filter((element) => { return element.length !== 0 }).length}   and    characters :- {text.length}</p>
+                <p>{0.008 * (text.split(" ").filter((element) => { return element.length !== 0 }).length)} <b>Menutes read </b></p>
                 <h3>Preview</h3>
                 <p>{text.length > 0 ? text : "Enter something in the text box above to Preview it here."}</p>
             </div>
-
 
         </div>
     )
